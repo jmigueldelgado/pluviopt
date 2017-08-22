@@ -4,7 +4,7 @@
 #' @import rvest
 #' @import lubridate
 #' @export
-get_file_web <- function(id,tmin,tmax)
+get_file_web <- function(ref,tmin,tmax)
 {
 
 #tmin <- "01/08/2017"

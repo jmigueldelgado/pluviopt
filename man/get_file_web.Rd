@@ -4,7 +4,7 @@
 \alias{get_file_web}
 \title{Get csv from snirh for given station and dates}
 \usage{
-get_file_web(id, tmin, tmax)
+get_file_web(ref, tmin, tmax)
 }
 \description{
 Get csv from snirh for given station and dates
