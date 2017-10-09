@@ -1,7 +1,0 @@
-require("devtools")
-require("roxygen2")
-
-#create("pluviopt")
-setwd("/home/delgado/Projects/pluviopt")
-document()
-install()

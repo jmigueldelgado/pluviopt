@@ -1,8 +1,21 @@
+require(pluviopt)
 require(readr)
 require(dplyr)
+require(lubridate)
 require(rvest)
-tbl <- get_stations_file()
-p <- get_file_web(tbl$ref[4],"01/01/2017","01/06/2017")
+require(sf)
+
+setwd("~/proj/pluviopt")
+tbl <- get_stations_meteo()
+#tbl <- get_stations_pluvio()
+start <- "1/10/2016"
+end <- "01/10/2017"
+
+select(tbl,Nome)
+
+x <- get_temp_web(tbl$ref[4],start,end) %>% group_by(date=date(datetime)) %>% summarise(value=mean(value))
+
+x <- get_pluvio_web(tbl$ref[4],start,end %>% group_by(date=date(datetime)) %>% summarise(value=sum(value)))
 
 require(ggplot2)
-ggplot(p)+geom_point(aes(x=datetime,y=value))
+ggplot(x)+geom_line(aes(x=datetime,y=value))

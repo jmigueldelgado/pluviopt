@@ -1,0 +1,675 @@
+
+R version 3.4.1 (2017-06-30) -- "Single Candle"
+Copyright (C) 2017 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> > if(identical(getOption('pager'), file.path(R.home('bin'), 'pager'))) # rather take the ESS one
++       options(pager='cat')
+> options(STERM='iESS', str.dendrogram.last="'", editor='emacsclient', show.error.locations=TRUE)
+> install.packages("shiny")
+--- Please select a CRAN mirror for use in this session ---
+also installing the dependencies ‘httpuv’, ‘xtable’, ‘htmltools’, ‘sourcetools’
+
+trying URL 'https://ftp.gwdg.de/pub/misc/cran/src/contrib/httpuv_1.3.5.tar.gz'
+Content type 'application/octet-stream' length 427638 bytes (417 KB)
+==================================================
+downloaded 417 KB
+
+trying URL 'https://ftp.gwdg.de/pub/misc/cran/src/contrib/xtable_1.8-2.tar.gz'
+Content type 'application/octet-stream' length 619611 bytes (605 KB)
+==================================================
+downloaded 605 KB
+
+trying URL 'https://ftp.gwdg.de/pub/misc/cran/src/contrib/htmltools_0.3.6.tar.gz'
+Content type 'application/octet-stream' length 45408 bytes (44 KB)
+==================================================
+downloaded 44 KB
+
+trying URL 'https://ftp.gwdg.de/pub/misc/cran/src/contrib/sourcetools_0.1.6.tar.gz'
+Content type 'application/octet-stream' length 24092 bytes (23 KB)
+==================================================
+downloaded 23 KB
+
+trying URL 'https://ftp.gwdg.de/pub/misc/cran/src/contrib/shiny_1.0.5.tar.gz'
+Content type 'application/octet-stream' length 2330710 bytes (2.2 MB)
+==================================================
+downloaded 2.2 MB
+
+* installing *source* package ‘httpuv’ ...
+** package ‘httpuv’ successfully unpacked and MD5 sums checked
+** libs
+g++ -std=gnu++11 -I/home/delgado/local/R/lib/R/include -DNDEBUG -I./libuv/include -I./http-parser -I./sha1 -I./base64 -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2 -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I/home/delgado/local/R/lib/R/include -DNDEBUG -I./libuv/include -I./http-parser -I./sha1 -I./base64 -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2 -c filedatasource-unix.cpp -o filedatasource-unix.o
+g++ -std=gnu++11 -I/home/delgado/local/R/lib/R/include -DNDEBUG -I./libuv/include -I./http-parser -I./sha1 -I./base64 -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2 -c filedatasource-win.cpp -o filedatasource-win.o
+g++ -std=gnu++11 -I/home/delgado/local/R/lib/R/include -DNDEBUG -I./libuv/include -I./http-parser -I./sha1 -I./base64 -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2 -c http.cpp -o http.o
+g++ -std=gnu++11 -I/home/delgado/local/R/lib/R/include -DNDEBUG -I./libuv/include -I./http-parser -I./sha1 -I./base64 -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2 -c httpuv.cpp -o httpuv.o
+gcc -I/home/delgado/local/R/lib/R/include -DNDEBUG -I./libuv/include -I./http-parser -I./sha1 -I./base64 -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c md5.c -o md5.o
+gcc -I/home/delgado/local/R/lib/R/include -DNDEBUG -I./libuv/include -I./http-parser -I./sha1 -I./base64 -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c register.c -o register.o
+gcc -I/home/delgado/local/R/lib/R/include -DNDEBUG -I./libuv/include -I./http-parser -I./sha1 -I./base64 -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c set_invalid_parameter.c -o set_invalid_parameter.o
+g++ -std=gnu++11 -I/home/delgado/local/R/lib/R/include -DNDEBUG -I./libuv/include -I./http-parser -I./sha1 -I./base64 -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2 -c uvutil.cpp -o uvutil.o
+g++ -std=gnu++11 -I/home/delgado/local/R/lib/R/include -DNDEBUG -I./libuv/include -I./http-parser -I./sha1 -I./base64 -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2 -c websockets-base.cpp -o websockets-base.o
+g++ -std=gnu++11 -I/home/delgado/local/R/lib/R/include -DNDEBUG -I./libuv/include -I./http-parser -I./sha1 -I./base64 -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2 -c websockets-hixie76.cpp -o websockets-hixie76.o
+g++ -std=gnu++11 -I/home/delgado/local/R/lib/R/include -DNDEBUG -I./libuv/include -I./http-parser -I./sha1 -I./base64 -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2 -c websockets-hybi03.cpp -o websockets-hybi03.o
+g++ -std=gnu++11 -I/home/delgado/local/R/lib/R/include -DNDEBUG -I./libuv/include -I./http-parser -I./sha1 -I./base64 -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2 -c websockets-ietf.cpp -o websockets-ietf.o
+g++ -std=gnu++11 -I/home/delgado/local/R/lib/R/include -DNDEBUG -I./libuv/include -I./http-parser -I./sha1 -I./base64 -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2 -c websockets.cpp -o websockets.o
+websockets.cpp: In member function ‘bool WebSocketConnection::accept(const RequestHeaders&, const char*, size_t)’:
+websockets.cpp:217:8: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+   std::auto_ptr<WebSocketProto_IETF> ietf(new WebSocketProto_IETF());
+        ^
+In file included from /usr/include/c++/5/bits/locale_conv.h:41:0,
+                 from /usr/include/c++/5/locale:43,
+                 from /usr/include/c++/5/iomanip:43,
+                 from websockets.cpp:6:
+/usr/include/c++/5/bits/unique_ptr.h:49:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^
+websockets.cpp:223:8: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+   std::auto_ptr<WebSocketProto_HyBi03> hybi03(new WebSocketProto_HyBi03());
+        ^
+In file included from /usr/include/c++/5/bits/locale_conv.h:41:0,
+                 from /usr/include/c++/5/locale:43,
+                 from /usr/include/c++/5/iomanip:43,
+                 from websockets.cpp:6:
+/usr/include/c++/5/bits/unique_ptr.h:49:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^
+make --directory=libuv \
+	CC="gcc" CFLAGS="-g -O2  -fpic" AR="ar" RANLIB="ranlib" \
+    HAVE_DTRACE=0 \
+	libuv.a
+make[1]: Entering directory '/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv'
+mkdir -p src/unix
+touch src/unix/.buildstamp
+gcc --std=c89 -pedantic -Wall -Wextra -Wno-unused-parameter -D_GNU_SOURCE -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include/uv-private -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/src -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -g -O2  -fpic -c src/unix/async.c -o src/unix/async.o
+gcc --std=c89 -pedantic -Wall -Wextra -Wno-unused-parameter -D_GNU_SOURCE -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include/uv-private -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/src -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -g -O2  -fpic -c src/unix/core.c -o src/unix/core.o
+gcc --std=c89 -pedantic -Wall -Wextra -Wno-unused-parameter -D_GNU_SOURCE -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include/uv-private -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/src -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -g -O2  -fpic -c src/unix/dl.c -o src/unix/dl.o
+gcc --std=c89 -pedantic -Wall -Wextra -Wno-unused-parameter -D_GNU_SOURCE -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include/uv-private -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/src -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -g -O2  -fpic -c src/unix/error.c -o src/unix/error.o
+gcc --std=c89 -pedantic -Wall -Wextra -Wno-unused-parameter -D_GNU_SOURCE -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include/uv-private -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/src -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -g -O2  -fpic -c src/unix/fs.c -o src/unix/fs.o
+gcc --std=c89 -pedantic -Wall -Wextra -Wno-unused-parameter -D_GNU_SOURCE -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include/uv-private -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/src -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -g -O2  -fpic -c src/unix/getaddrinfo.c -o src/unix/getaddrinfo.o
+gcc --std=c89 -pedantic -Wall -Wextra -Wno-unused-parameter -D_GNU_SOURCE -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include/uv-private -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/src -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -g -O2  -fpic -c src/unix/loop.c -o src/unix/loop.o
+gcc --std=c89 -pedantic -Wall -Wextra -Wno-unused-parameter -D_GNU_SOURCE -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include/uv-private -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/src -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -g -O2  -fpic -c src/unix/loop-watcher.c -o src/unix/loop-watcher.o
+gcc --std=c89 -pedantic -Wall -Wextra -Wno-unused-parameter -D_GNU_SOURCE -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include/uv-private -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/src -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -g -O2  -fpic -c src/unix/pipe.c -o src/unix/pipe.o
+gcc --std=c89 -pedantic -Wall -Wextra -Wno-unused-parameter -D_GNU_SOURCE -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include/uv-private -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/src -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -g -O2  -fpic -c src/unix/poll.c -o src/unix/poll.o
+gcc --std=c89 -pedantic -Wall -Wextra -Wno-unused-parameter -D_GNU_SOURCE -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include/uv-private -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/src -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -g -O2  -fpic -c src/unix/process.c -o src/unix/process.o
+gcc --std=c89 -pedantic -Wall -Wextra -Wno-unused-parameter -D_GNU_SOURCE -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include/uv-private -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/src -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -g -O2  -fpic -c src/unix/signal.c -o src/unix/signal.o
+gcc --std=c89 -pedantic -Wall -Wextra -Wno-unused-parameter -D_GNU_SOURCE -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include/uv-private -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/src -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -g -O2  -fpic -c src/unix/stream.c -o src/unix/stream.o
+gcc --std=c89 -pedantic -Wall -Wextra -Wno-unused-parameter -D_GNU_SOURCE -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include/uv-private -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/src -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -g -O2  -fpic -c src/unix/tcp.c -o src/unix/tcp.o
+gcc --std=c89 -pedantic -Wall -Wextra -Wno-unused-parameter -D_GNU_SOURCE -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include/uv-private -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/src -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -g -O2  -fpic -c src/unix/thread.c -o src/unix/thread.o
+gcc --std=c89 -pedantic -Wall -Wextra -Wno-unused-parameter -D_GNU_SOURCE -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include/uv-private -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/src -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -g -O2  -fpic -c src/unix/threadpool.c -o src/unix/threadpool.o
+gcc --std=c89 -pedantic -Wall -Wextra -Wno-unused-parameter -D_GNU_SOURCE -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include/uv-private -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/src -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -g -O2  -fpic -c src/unix/timer.c -o src/unix/timer.o
+gcc --std=c89 -pedantic -Wall -Wextra -Wno-unused-parameter -D_GNU_SOURCE -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include/uv-private -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/src -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -g -O2  -fpic -c src/unix/tty.c -o src/unix/tty.o
+gcc --std=c89 -pedantic -Wall -Wextra -Wno-unused-parameter -D_GNU_SOURCE -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include/uv-private -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/src -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -g -O2  -fpic -c src/unix/udp.c -o src/unix/udp.o
+mkdir -p src
+touch src/.buildstamp
+gcc --std=c89 -pedantic -Wall -Wextra -Wno-unused-parameter -D_GNU_SOURCE -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include/uv-private -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/src -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -g -O2  -fpic -c src/fs-poll.c -o src/fs-poll.o
+gcc --std=c89 -pedantic -Wall -Wextra -Wno-unused-parameter -D_GNU_SOURCE -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include/uv-private -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/src -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -g -O2  -fpic -c src/uv-common.c -o src/uv-common.o
+gcc --std=c89 -pedantic -Wall -Wextra -Wno-unused-parameter -D_GNU_SOURCE -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include/uv-private -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/src -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -g -O2  -fpic -c src/inet.c -o src/inet.o
+gcc --std=c89 -pedantic -Wall -Wextra -Wno-unused-parameter -D_GNU_SOURCE -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include/uv-private -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/src -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -g -O2  -fpic -c src/version.c -o src/version.o
+gcc --std=c89 -pedantic -Wall -Wextra -Wno-unused-parameter -D_GNU_SOURCE -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include/uv-private -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/src -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -g -O2  -fpic -c src/unix/linux-core.c -o src/unix/linux-core.o
+gcc --std=c89 -pedantic -Wall -Wextra -Wno-unused-parameter -D_GNU_SOURCE -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include/uv-private -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/src -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -g -O2  -fpic -c src/unix/linux-inotify.c -o src/unix/linux-inotify.o
+gcc --std=c89 -pedantic -Wall -Wextra -Wno-unused-parameter -D_GNU_SOURCE -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include/uv-private -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/src -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -g -O2  -fpic -c src/unix/linux-syscalls.c -o src/unix/linux-syscalls.o
+gcc --std=c89 -pedantic -Wall -Wextra -Wno-unused-parameter -D_GNU_SOURCE -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/include/uv-private -I/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv/src -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -g -O2  -fpic -c src/unix/proctitle.c -o src/unix/proctitle.o
+ar rcs libuv.a src/unix/async.o src/unix/core.o src/unix/dl.o src/unix/error.o src/unix/fs.o src/unix/getaddrinfo.o src/unix/loop.o src/unix/loop-watcher.o src/unix/pipe.o src/unix/poll.o src/unix/process.o src/unix/signal.o src/unix/stream.o src/unix/tcp.o src/unix/thread.o src/unix/threadpool.o src/unix/timer.o src/unix/tty.o src/unix/udp.o src/fs-poll.o src/uv-common.o src/inet.o src/version.o src/unix/linux-core.o src/unix/linux-inotify.o src/unix/linux-syscalls.o src/unix/proctitle.o
+make[1]: Leaving directory '/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/libuv'
+make --directory=http-parser \
+	CC="gcc" CFLAGS="-g -O2  -fpic" AR="ar" RANLIB="ranlib" \
+	http_parser.o
+make[1]: Entering directory '/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/http-parser'
+gcc -I. -DHTTP_PARSER_STRICT=0  -g -O2  -fpic -O3  -c http_parser.c
+make[1]: Leaving directory '/tmp/RtmpklnBIu/R.INSTALL14c230f7b930/httpuv/src/http-parser'
+(cd sha1 && gcc -g -O2  -fpic -c sha1.c -o sha1.o)
+(cd base64 && g++ -std=gnu++11 -I/home/delgado/local/R/lib/R/include -DNDEBUG -I./libuv/include -I./http-parser -I./sha1 -I./base64 -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2 -c base64.cpp -o base64.o)
+g++ -std=gnu++11 -shared -L/usr/local/lib -o httpuv.so RcppExports.o filedatasource-unix.o filedatasource-win.o http.o httpuv.o md5.o register.o set_invalid_parameter.o uvutil.o websockets-base.o websockets-hixie76.o websockets-hybi03.o websockets-ietf.o websockets.o ./libuv/libuv.a ./http-parser/http_parser.o ./sha1/sha1.o ./base64/base64.o
+installing to /home/delgado/local/R/lib/R/library/httpuv/libs
+** R
+** demo
+** preparing package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded
+* DONE (httpuv)
+* installing *source* package ‘xtable’ ...
+** package ‘xtable’ successfully unpacked and MD5 sums checked
+** R
+** data
+** inst
+** preparing package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded
+* DONE (xtable)
+* installing *source* package ‘htmltools’ ...
+** package ‘htmltools’ successfully unpacked and MD5 sums checked
+** libs
+g++  -I/home/delgado/local/R/lib/R/include -DNDEBUG  -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
+gcc -I/home/delgado/local/R/lib/R/include -DNDEBUG  -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c init.c -o init.o
+g++  -I/home/delgado/local/R/lib/R/include -DNDEBUG  -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c template.cpp -o template.o
+g++ -shared -L/usr/local/lib -o htmltools.so RcppExports.o init.o template.o
+installing to /home/delgado/local/R/lib/R/library/htmltools/libs
+** R
+** preparing package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded
+* DONE (htmltools)
+* installing *source* package ‘sourcetools’ ...
+** package ‘sourcetools’ successfully unpacked and MD5 sums checked
+** libs
+g++  -I/home/delgado/local/R/lib/R/include -DNDEBUG -I../inst/include  -I/usr/local/include   -fpic  -g -O2  -c Reader.cpp -o Reader.o
+g++  -I/home/delgado/local/R/lib/R/include -DNDEBUG -I../inst/include  -I/usr/local/include   -fpic  -g -O2  -c Tokenizer.cpp -o Tokenizer.o
+gcc -I/home/delgado/local/R/lib/R/include -DNDEBUG -I../inst/include  -I/usr/local/include   -fpic  -g -O2  -c sourcetools-init.c -o sourcetools-init.o
+g++ -shared -L/usr/local/lib -o sourcetools.so Reader.o Tokenizer.o sourcetools-init.o
+installing to /home/delgado/local/R/lib/R/library/sourcetools/libs
+** R
+** inst
+** preparing package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded
+* DONE (sourcetools)
+* installing *source* package ‘shiny’ ...
+** package ‘shiny’ successfully unpacked and MD5 sums checked
+** R
+** inst
+** preparing package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded
+* DONE (shiny)
+
+The downloaded source packages are in
+	‘/tmp/Rtmp6AyNYD/downloaded_packages’
+Updating HTML index of packages in '.Library'
+Making 'packages.html' ... done
+> install.packages("leaflet")
+also installing the dependencies ‘base64enc’, ‘crosstalk’, ‘htmlwidgets’, ‘markdown’, ‘png’, ‘raster’, ‘viridis’
+
+trying URL 'https://ftp.gwdg.de/pub/misc/cran/src/contrib/base64enc_0.1-3.tar.gz'
+Content type 'application/octet-stream' length 7833 bytes
+==================================================
+downloaded 7833 bytes
+
+trying URL 'https://ftp.gwdg.de/pub/misc/cran/src/contrib/crosstalk_1.0.0.tar.gz'
+Content type 'application/octet-stream' length 563474 bytes (550 KB)
+==================================================
+downloaded 550 KB
+
+trying URL 'https://ftp.gwdg.de/pub/misc/cran/src/contrib/htmlwidgets_0.9.tar.gz'
+Content type 'application/octet-stream' length 944851 bytes (922 KB)
+==================================================
+downloaded 922 KB
+
+trying URL 'https://ftp.gwdg.de/pub/misc/cran/src/contrib/markdown_0.8.tar.gz'
+Content type 'application/octet-stream' length 80583 bytes (78 KB)
+==================================================
+downloaded 78 KB
+
+trying URL 'https://ftp.gwdg.de/pub/misc/cran/src/contrib/png_0.1-7.tar.gz'
+Content type 'application/octet-stream' length 24990 bytes (24 KB)
+==================================================
+downloaded 24 KB
+
+trying URL 'https://ftp.gwdg.de/pub/misc/cran/src/contrib/raster_2.5-8.tar.gz'
+Content type 'application/octet-stream' length 1092017 bytes (1.0 MB)
+==================================================
+downloaded 1.0 MB
+
+trying URL 'https://ftp.gwdg.de/pub/misc/cran/src/contrib/viridis_0.4.0.tar.gz'
+Content type 'application/octet-stream' length 1787731 bytes (1.7 MB)
+==================================================
+downloaded 1.7 MB
+
+trying URL 'https://ftp.gwdg.de/pub/misc/cran/src/contrib/leaflet_1.1.0.tar.gz'
+Content type 'application/octet-stream' length 2415138 bytes (2.3 MB)
+==================================================
+downloaded 2.3 MB
+
+* installing *source* package ‘base64enc’ ...
+** package ‘base64enc’ successfully unpacked and MD5 sums checked
+** libs
+gcc -I/home/delgado/local/R/lib/R/include -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c base64.c -o base64.o
+gcc -I/home/delgado/local/R/lib/R/include -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c uriencode.c -o uriencode.o
+gcc -I/home/delgado/local/R/lib/R/include -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c utf8.c -o utf8.o
+gcc -shared -L/usr/local/lib -o base64enc.so base64.o uriencode.o utf8.o
+installing to /home/delgado/local/R/lib/R/library/base64enc/libs
+** R
+** preparing package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded
+* DONE (base64enc)
+* installing *source* package ‘crosstalk’ ...
+** package ‘crosstalk’ successfully unpacked and MD5 sums checked
+** R
+** inst
+** preparing package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded
+* DONE (crosstalk)
+* installing *source* package ‘htmlwidgets’ ...
+** package ‘htmlwidgets’ successfully unpacked and MD5 sums checked
+** R
+** inst
+** preparing package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded
+* DONE (htmlwidgets)
+* installing *source* package ‘markdown’ ...
+** package ‘markdown’ successfully unpacked and MD5 sums checked
+** libs
+gcc -I/home/delgado/local/R/lib/R/include -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c Rbase64.c -o Rbase64.o
+gcc -I/home/delgado/local/R/lib/R/include -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c Rinit.c -o Rinit.o
+gcc -I/home/delgado/local/R/lib/R/include -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c Rmarkdown.c -o Rmarkdown.o
+gcc -I/home/delgado/local/R/lib/R/include -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c autolink.c -o autolink.o
+gcc -I/home/delgado/local/R/lib/R/include -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c buffer.c -o buffer.o
+gcc -I/home/delgado/local/R/lib/R/include -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c houdini_href_e.c -o houdini_href_e.o
+gcc -I/home/delgado/local/R/lib/R/include -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c houdini_html_e.c -o houdini_html_e.o
+gcc -I/home/delgado/local/R/lib/R/include -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c html.c -o html.o
+gcc -I/home/delgado/local/R/lib/R/include -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c html_smartypants.c -o html_smartypants.o
+gcc -I/home/delgado/local/R/lib/R/include -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c markdown.c -o markdown.o
+gcc -I/home/delgado/local/R/lib/R/include -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c stack.c -o stack.o
+gcc -shared -L/usr/local/lib -o markdown.so Rbase64.o Rinit.o Rmarkdown.o autolink.o buffer.o houdini_href_e.o houdini_html_e.o html.o html_smartypants.o markdown.o stack.o
+installing to /home/delgado/local/R/lib/R/library/markdown/libs
+** R
+** inst
+** preparing package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded
+* DONE (markdown)
+* installing *source* package ‘png’ ...
+** package ‘png’ successfully unpacked and MD5 sums checked
+** libs
+gcc -I/home/delgado/local/R/lib/R/include -DNDEBUG   -I/usr/local/include   `libpng-config --cflags` -fpic  -g -O2  -c read.c -o read.o
+gcc -I/home/delgado/local/R/lib/R/include -DNDEBUG   -I/usr/local/include   `libpng-config --cflags` -fpic  -g -O2  -c write.c -o write.o
+gcc -shared -L/usr/local/lib -o png.so read.o write.o -lpng12 -lz -lm
+installing to /home/delgado/local/R/lib/R/library/png/libs
+** R
+** inst
+** preparing package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded
+* DONE (png)
+* installing *source* package ‘raster’ ...
+** package ‘raster’ successfully unpacked and MD5 sums checked
+** libs
+g++  -I/home/delgado/local/R/lib/R/include -DNDEBUG  -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c RcppExports.cpp -o RcppExports.o
+gcc -I/home/delgado/local/R/lib/R/include -DNDEBUG  -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c aggregate.c -o aggregate.o
+gcc -I/home/delgado/local/R/lib/R/include -DNDEBUG  -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c aggregate_get.c -o aggregate_get.o
+g++  -I/home/delgado/local/R/lib/R/include -DNDEBUG  -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c bilinear.cpp -o bilinear.o
+gcc -I/home/delgado/local/R/lib/R/include -DNDEBUG  -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c broom.c -o broom.o
+g++  -I/home/delgado/local/R/lib/R/include -DNDEBUG  -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c cellRowCol.cpp -o cellRowCol.o
+gcc -I/home/delgado/local/R/lib/R/include -DNDEBUG  -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c clamp.c -o clamp.o
+gcc -I/home/delgado/local/R/lib/R/include -DNDEBUG  -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c direction.c -o direction.o
+gcc -I/home/delgado/local/R/lib/R/include -DNDEBUG  -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c dist_util.c -o dist_util.o
+gcc -I/home/delgado/local/R/lib/R/include -DNDEBUG  -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c distance.c -o distance.o
+gcc -I/home/delgado/local/R/lib/R/include -DNDEBUG  -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c edge.c -o edge.o
+gcc -I/home/delgado/local/R/lib/R/include -DNDEBUG  -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c focal_fun.c -o focal_fun.o
+gcc -I/home/delgado/local/R/lib/R/include -DNDEBUG  -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c focal_get.c -o focal_get.o
+gcc -I/home/delgado/local/R/lib/R/include -DNDEBUG  -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c focal_sum.c -o focal_sum.o
+gcc -I/home/delgado/local/R/lib/R/include -DNDEBUG  -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c geodesic.c -o geodesic.o
+gcc -I/home/delgado/local/R/lib/R/include -DNDEBUG  -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c geolib.c -o geolib.o
+g++  -I/home/delgado/local/R/lib/R/include -DNDEBUG  -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c getPolygons.cpp -o getPolygons.o
+gcc -I/home/delgado/local/R/lib/R/include -DNDEBUG  -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c intersect.c -o intersect.o
+gcc -I/home/delgado/local/R/lib/R/include -DNDEBUG  -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c layerize.c -o layerize.o
+g++  -I/home/delgado/local/R/lib/R/include -DNDEBUG  -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c modal.cpp -o modal.o
+gcc -I/home/delgado/local/R/lib/R/include -DNDEBUG  -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c pointinpoly.c -o pointinpoly.o
+g++  -I/home/delgado/local/R/lib/R/include -DNDEBUG  -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c ppmin.cpp -o ppmin.o
+gcc -I/home/delgado/local/R/lib/R/include -DNDEBUG  -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c reclass.c -o reclass.o
+gcc -I/home/delgado/local/R/lib/R/include -DNDEBUG  -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c solar.c -o solar.o
+gcc -I/home/delgado/local/R/lib/R/include -DNDEBUG  -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c terrain.c -o terrain.o
+gcc -I/home/delgado/local/R/lib/R/include -DNDEBUG  -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c util.c -o util.o
+gcc -I/home/delgado/local/R/lib/R/include -DNDEBUG  -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c wirth.c -o wirth.o
+g++  -I/home/delgado/local/R/lib/R/include -DNDEBUG  -I"/home/delgado/local/R/lib/R/library/Rcpp/include" -I/usr/local/include   -fpic  -g -O2  -c xyCell.cpp -o xyCell.o
+g++ -shared -L/usr/local/lib -o raster.so RcppExports.o aggregate.o aggregate_get.o bilinear.o broom.o cellRowCol.o clamp.o direction.o dist_util.o distance.o edge.o focal_fun.o focal_get.o focal_sum.o geodesic.o geolib.o getPolygons.o intersect.o layerize.o modal.o pointinpoly.o ppmin.o reclass.o solar.o terrain.o util.o wirth.o xyCell.o
+installing to /home/delgado/local/R/lib/R/library/raster/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+in method for ‘brick’ with signature ‘x="big.matrix"’: no definition for class “big.matrix”
+in method for ‘brick’ with signature ‘x="kasc"’: no definition for class “kasc”
+in method for ‘brick’ with signature ‘x="grf"’: no definition for class “grf”
+in method for ‘coerce’ with signature ‘"STFDF","RasterBrick"’: no definition for class “STFDF”
+in method for ‘coerce’ with signature ‘"STSDF","RasterBrick"’: no definition for class “STSDF”
+in method for ‘coerce’ with signature ‘"asc","RasterLayer"’: no definition for class “asc”
+in method for ‘coerce’ with signature ‘"RasterLayer","asc"’: no definition for class “asc”
+in method for ‘coerce’ with signature ‘"kasc","RasterBrick"’: no definition for class “kasc”
+in method for ‘coerce’ with signature ‘"kasc","RasterStack"’: no definition for class “kasc”
+in method for ‘coerce’ with signature ‘"kde","RasterLayer"’: no definition for class “kde”
+in method for ‘coerce’ with signature ‘"grf","RasterBrick"’: no definition for class “grf”
+in method for ‘coerce’ with signature ‘"grf","RasterLayer"’: no definition for class “grf”
+Creating a generic function for ‘nrow’ from package ‘base’ in package ‘raster’
+Creating a generic function for ‘ncol’ from package ‘base’ in package ‘raster’
+in method for ‘raster’ with signature ‘x="big.matrix"’: no definition for class “big.matrix”
+in method for ‘raster’ with signature ‘x="kasc"’: no definition for class “kasc”
+in method for ‘raster’ with signature ‘x="asc"’: no definition for class “asc”
+in method for ‘raster’ with signature ‘x="kde"’: no definition for class “kde”
+in method for ‘raster’ with signature ‘x="grf"’: no definition for class “grf”
+Creating a generic function for ‘rowSums’ from package ‘base’ in package ‘raster’
+Creating a generic function for ‘colSums’ from package ‘base’ in package ‘raster’
+in method for ‘stack’ with signature ‘x="kasc"’: no definition for class “kasc”
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded
+* DONE (raster)
+* installing *source* package ‘viridis’ ...
+** package ‘viridis’ successfully unpacked and MD5 sums checked
+** R
+** inst
+** preparing package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded
+* DONE (viridis)
+* installing *source* package ‘leaflet’ ...
+** package ‘leaflet’ successfully unpacked and MD5 sums checked
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** preparing package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded
+* DONE (leaflet)
+
+The downloaded source packages are in
+	‘/tmp/Rtmp6AyNYD/downloaded_packages’
+Updating HTML index of packages in '.Library'
+Making 'packages.html' ... done
+> require(shiny)
+Loading required package: shiny
+> require(leaflet)
+Loading required package: leaflet
+> library(leaflet)
+> m <- leaflet() %>%
++   addTiles() %>%  # Add default OpenStreetMap map tiles
++   addMarkers(lng=174.768, lat=-36.852, popup="The birthplace of R")
+> m  # Print the map
+> m <- leaflet() %>%
++   addTiles() %>%  # Add default OpenStreetMap map tiles
++   addMarkers(lng=174.768, lat=-36.852, popup="The birthplace of R")
+> m  # Print the map
+> names(providers)
+  [1] "OpenStreetMap"                      
+  [2] "OpenStreetMap.Mapnik"               
+  [3] "OpenStreetMap.BlackAndWhite"        
+  [4] "OpenStreetMap.DE"                   
+  [5] "OpenStreetMap.France"               
+  [6] "OpenStreetMap.HOT"                  
+  [7] "OpenSeaMap"                         
+  [8] "OpenTopoMap"                        
+  [9] "Thunderforest"                      
+ [10] "Thunderforest.OpenCycleMap"         
+ [11] "Thunderforest.Transport"            
+ [12] "Thunderforest.TransportDark"        
+ [13] "Thunderforest.SpinalMap"            
+ [14] "Thunderforest.Landscape"            
+ [15] "Thunderforest.Outdoors"             
+ [16] "Thunderforest.Pioneer"              
+ [17] "OpenMapSurfer"                      
+ [18] "OpenMapSurfer.Roads"                
+ [19] "OpenMapSurfer.AdminBounds"          
+ [20] "OpenMapSurfer.Grayscale"            
+ [21] "Hydda"                              
+ [22] "Hydda.Full"                         
+ [23] "Hydda.Base"                         
+ [24] "Hydda.RoadsAndLabels"               
+ [25] "MapBox"                             
+ [26] "Stamen"                             
+ [27] "Stamen.Toner"                       
+ [28] "Stamen.TonerBackground"             
+ [29] "Stamen.TonerHybrid"                 
+ [30] "Stamen.TonerLines"                  
+ [31] "Stamen.TonerLabels"                 
+ [32] "Stamen.TonerLite"                   
+ [33] "Stamen.Watercolor"                  
+ [34] "Stamen.Terrain"                     
+ [35] "Stamen.TerrainBackground"           
+ [36] "Stamen.TopOSMRelief"                
+ [37] "Stamen.TopOSMFeatures"              
+ [38] "Esri"                               
+ [39] "Esri.WorldStreetMap"                
+ [40] "Esri.DeLorme"                       
+ [41] "Esri.WorldTopoMap"                  
+ [42] "Esri.WorldImagery"                  
+ [43] "Esri.WorldTerrain"                  
+ [44] "Esri.WorldShadedRelief"             
+ [45] "Esri.WorldPhysical"                 
+ [46] "Esri.OceanBasemap"                  
+ [47] "Esri.NatGeoWorldMap"                
+ [48] "Esri.WorldGrayCanvas"               
+ [49] "OpenWeatherMap"                     
+ [50] "OpenWeatherMap.Clouds"              
+ [51] "OpenWeatherMap.CloudsClassic"       
+ [52] "OpenWeatherMap.Precipitation"       
+ [53] "OpenWeatherMap.PrecipitationClassic"
+ [54] "OpenWeatherMap.Rain"                
+ [55] "OpenWeatherMap.RainClassic"         
+ [56] "OpenWeatherMap.Pressure"            
+ [57] "OpenWeatherMap.PressureContour"     
+ [58] "OpenWeatherMap.Wind"                
+ [59] "OpenWeatherMap.Temperature"         
+ [60] "OpenWeatherMap.Snow"                
+ [61] "HERE"                               
+ [62] "HERE.normalDay"                     
+ [63] "HERE.normalDayCustom"               
+ [64] "HERE.normalDayGrey"                 
+ [65] "HERE.normalDayMobile"               
+ [66] "HERE.normalDayGreyMobile"           
+ [67] "HERE.normalDayTransit"              
+ [68] "HERE.normalDayTransitMobile"        
+ [69] "HERE.normalNight"                   
+ [70] "HERE.normalNightMobile"             
+ [71] "HERE.normalNightGrey"               
+ [72] "HERE.normalNightGreyMobile"         
+ [73] "HERE.basicMap"                      
+ [74] "HERE.mapLabels"                     
+ [75] "HERE.trafficFlow"                   
+ [76] "HERE.carnavDayGrey"                 
+ [77] "HERE.hybridDay"                     
+ [78] "HERE.hybridDayMobile"               
+ [79] "HERE.pedestrianDay"                 
+ [80] "HERE.pedestrianNight"               
+ [81] "HERE.satelliteDay"                  
+ [82] "HERE.terrainDay"                    
+ [83] "HERE.terrainDayMobile"              
+ [84] "FreeMapSK"                          
+ [85] "MtbMap"                             
+ [86] "CartoDB"                            
+ [87] "CartoDB.Positron"                   
+ [88] "CartoDB.PositronNoLabels"           
+ [89] "CartoDB.PositronOnlyLabels"         
+ [90] "CartoDB.DarkMatter"                 
+ [91] "CartoDB.DarkMatterNoLabels"         
+ [92] "CartoDB.DarkMatterOnlyLabels"       
+ [93] "HikeBike"                           
+ [94] "HikeBike.HikeBike"                  
+ [95] "HikeBike.HillShading"               
+ [96] "BasemapAT"                          
+ [97] "BasemapAT.basemap"                  
+ [98] "BasemapAT.grau"                     
+ [99] "BasemapAT.overlay"                  
+[100] "BasemapAT.highdpi"                  
+[101] "BasemapAT.orthofoto"                
+[102] "NASAGIBS"                           
+[103] "NASAGIBS.ModisTerraTrueColorCR"     
+[104] "NASAGIBS.ModisTerraBands367CR"      
+[105] "NASAGIBS.ViirsEarthAtNight2012"     
+[106] "NASAGIBS.ModisTerraLSTDay"          
+[107] "NASAGIBS.ModisTerraSnowCover"       
+[108] "NASAGIBS.ModisTerraAOD"             
+[109] "NASAGIBS.ModisTerraChlorophyll"     
+[110] "NLS"                                
+> m <- leaflet() %>%
++     addProviderTiles(providers$OpenStreetMap) %>% 
++   addMarkers(lng=174.768, lat=-36.852, popup="The birthplace of R")
+> m  # Print the map
+> m <- leaflet() %>%
++     addProviderTiles(providers$OpenStreetMap) %>% 
++     #addTiles() %>%  # Add default OpenStreetMap map tiles
++   addMarkers(lng=-8.09612, lat=40.80034, popup="Home")
+> m
+> require(pluviopt)
+Loading required package: pluviopt
+Warning messages:
+1: replacing previous import ‘dplyr::intersect’ by ‘lubridate::intersect’ when loading ‘pluviopt’ 
+2: replacing previous import ‘dplyr::union’ by ‘lubridate::union’ when loading ‘pluviopt’ 
+3: replacing previous import ‘dplyr::setdiff’ by ‘lubridate::setdiff’ when loading ‘pluviopt’ 
+4: replacing previous import ‘readr::guess_encoding’ by ‘rvest::guess_encoding’ when loading ‘pluviopt’ 
+> require(readr)
+Loading required package: readr
+> require(dplyr)
+Loading required package: dplyr
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+> require(rvest)
+Loading required package: rvest
+Loading required package: xml2
+
+Attaching package: ‘rvest’
+
+The following object is masked from ‘package:readr’:
+
+    guess_encoding
+
+> setwd("~/proj/pluviopt")
+> tbl <- get_stations_file()
+Parsed with column specification:
+cols(
+  .default = col_character(),
+  `ALTITUDE (M)` = col_integer(),
+  `LATITUDE (ºN)` = col_double(),
+  `LONGITUDE (ºW)` = col_double(),
+  `COORD_X (M)` = col_double(),
+  `COORD_Y (M)` = col_double(),
+  `ALTITUDE (M)_1` = col_integer(),
+  `ÍNDICE QUALIDADE*` = col_integer()
+)
+See spec(...) for full column specifications.
+Warning: 792 parsing failures.
+row # A tibble: 5 x 5 col     row   col   expected     actual                             file expected   <int> <chr>      <chr>      <chr>                            <chr> actual 1     1  <NA> 23 columns 24 columns './dados/rede_Meteorologica.csv' file 2     2  <NA> 23 columns 24 columns './dados/rede_Meteorologica.csv' row 3     3  <NA> 23 columns 24 columns './dados/rede_Meteorologica.csv' col 4     4  <NA> 23 columns 24 columns './dados/rede_Meteorologica.csv' expected 5     5  <NA> 23 columns 24 columns './dados/rede_Meteorologica.csv'
+... ................. ... .................................................................... ........ .................................................................... ...... .................................................................... .... .................................................................... ... .................................................................... ... ............................... [... truncated]
+Parsed with column specification:
+cols(
+  X1 = col_integer(),
+  X2 = col_character(),
+  X3 = col_character()
+)
+Warning: 1 parsing failure.
+row # A tibble: 1 x 5 col     row   col  expected    actual              file expected   <int> <chr>     <chr>     <chr>             <chr> actual 1    20  <NA> 3 columns 4 columns './dados/ids.tbl' file # A tibble: 1 x 5
+
+Joining, by = "CÓDIGO"
+Warning messages:
+1: Duplicated column names deduplicated: 'ALTITUDE (M)' => 'ALTITUDE (M)_1' [8] 
+2: In rbind(names(probs), probs_f) :
+  number of columns of result is not a multiple of vector length (arg 1)
+3: In rbind(names(probs), probs_f) :
+  number of columns of result is not a multiple of vector length (arg 2)
+> p <- get_file_web(tbl$ref[4],"01/07/2017","01/09/2017")
+> require(ggplot2)
+Loading required package: ggplot2
+> ggplot(p)+geom_point(aes(x=datetime,y=value))
+> tbl$ref[4]
+[1] 920684988
+> res <- tbl$ref[4]
+> ref <- tbl$ref[4]
+> path
+Error: object 'path' not found
+>     path <- paste0("http://snirh.apambiente.pt/snirh/_dadosbase/site/janela_verdados.php?sites=",ref,"&pars=100744007&tmin=",tmin,"&tmax=",tmax)
+Error in paste0("http://snirh.apambiente.pt/snirh/_dadosbase/site/janela_verdados.php?sites=",  : 
+  object 'tmin' not found
+> 
+> tmin <- "01/07/2017"
+> tmax <- "01/09/2017"
+>     path <- paste0("http://snirh.apambiente.pt/snirh/_dadosbase/site/janela_verdados.php?sites=",ref,"&pars=100744007&tmin=",tmin,"&tmax=",tmax)
+> path
+[1] "http://snirh.apambiente.pt/snirh/_dadosbase/site/janela_verdados.php?sites=920684988&pars=100744007&tmin=01/07/2017&tmax=01/09/2017"
+> tbl
+# A tibble: 80 x 25
+     CÓDIGO              NOME altitude latitude longitude `COORD_X (M)`
+      <chr>             <chr>    <int>    <dbl>     <dbl>         <dbl>
+ 1  17H/01C          ABRANTES      105 39.45400 -8.102000      202682.0
+ 2 21M/02UG         ALANDROAL      302 38.69300 -7.404000      263420.8
+ 3  26I/02F ALBUFEIRA DO ROXO      135 37.92898 -8.079641      204698.0
+ 4  23I/01C         ALCÁÇOVAS      218 38.39041 -8.151349      198404.3
+ 5 10O/02UG        ALMEIDINHA      871 40.59400 -7.129000      284961.6
+ 6 04R/01UG          ARGOZELO      685 41.63800 -6.601000      327693.2
+ 7 08H/01UG            AROUCA      355 40.92700 -8.240000      190972.0
+ 8  20C/03G           ARRANHÓ      204 38.95200 -9.137000      112953.0
+ 9 21K/01UG           AZARUJA      270 38.70264 -7.774686      231177.1
+10  04F/01C          BARCELOS       36 41.52600 -8.624000      159004.0
+# ... with 70 more rows, and 19 more variables: `COORD_Y (M)` <dbl>, `ALTITUDE
+#   (M)_1` <int>, BACIA <chr>, DISTRITO <chr>, CONCELHO <chr>, FREGUESIA <chr>,
+#   `ENTIDADE RESPONSÁVEL (AUTOMÁTICA)` <chr>, `ENTIDADE RESPONSÁVEL
+#   (CONVENCIONAL)` <chr>, `TIPO ESTAÇÃO (AUTOMÁTICA)` <chr>, `TIPO ESTAÇÃO
+#   (CONVENCIONAL)` <chr>, `ENTRADA FUNCIONAMENTO (CONVENCIONAL)` <chr>,
+#   `ENCERRAMENTO (CONVENCIONAL)` <chr>, `ENTRADA FUNCIONAMENTO
+#   (AUTOMÁTICA)` <chr>, `ENCERRAMENTO (AUTOMÁTICA)` <chr>, TELEMETRIA <chr>,
+#   ESTADO <chr>, `ÍNDICE QUALIDADE*` <int>, ref <int>, Nome <chr>
+> select(tbl,names)
+Error: `names` must resolve to integer column positions, not a primitive function
+> select(tbl,NOME)
+# A tibble: 80 x 1
+                NOME
+               <chr>
+ 1          ABRANTES
+ 2         ALANDROAL
+ 3 ALBUFEIRA DO ROXO
+ 4         ALCÁÇOVAS
+ 5        ALMEIDINHA
+ 6          ARGOZELO
+ 7            AROUCA
+ 8           ARRANHÓ
+ 9           AZARUJA
+10          BARCELOS
+# ... with 70 more rows
+> q()
+Save workspace image? [y/n/c]: n
+
+Process R finished at Wed Aug 30 14:10:35 2017
